@@ -53,4 +53,4 @@ test_table<- test_table[-c(4:6),]
 test_table$score_strength<- as.numeric(as.character(test_table$score_strength))
 test_table$pos.score<- as.numeric(as.character(test_table$pos.score))
 test_table$neg.score<- as.numeric(as.character(test_table$neg.score))
-ggplot(data=test_table, aes(x=V1, y=pos.score))+geom_point()
+ggplot(data=test_table, aes(x=V1, y=score_strength))+geom_point()
