@@ -54,3 +54,16 @@ test_table$score_strength<- as.numeric(as.character(test_table$score_strength))
 test_table$pos.score<- as.numeric(as.character(test_table$pos.score))
 test_table$neg.score<- as.numeric(as.character(test_table$neg.score))
 ggplot(data=test_table, aes(x=V1, y=score_strength))+geom_point()
+
+##topic modeling
+burnin <- 400
+iter <- 200
+thin <- 50
+seed <-list(2003,5,63,100001,765)
+nstart <- 5
+best <- TRUE
+
+k<-3
+ldaout <- LDA(mytm,k, method="Gibbs", control=list(nstart=nstart,seed=seed, best=best, burnin = burnin, iter = iter, thin=thin))
+ldaout.topic <- as.matrix(topics(ldaout))
+ldaout.terms <- as.matrix(terms(ldaout,10))
