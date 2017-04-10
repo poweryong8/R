@@ -1,0 +1,15 @@
+aprior_trans<- read.csv("C:/Users/fourones_jsw/Documents/task/programe_data/association_r.csv",header = T)
+head(aprior_trans)
+arules.list<- split(aprior_trans$ravenitemcd,aprior_trans$channeluserid)
+head(arules.list)
+listData <- list()
+for(i in 1:length(arules.list)){
+  listData[[i]] <- as.character(arules.list[[i]][!duplicated(arules.list[[i]])])
+}
+head(listData)
+trans1<- as(listData, "transactions")
+summary(trans)
+image(trans)
+library(arules)
+rules<-apriori(trans1,parameter=list(support =0.1, confidence=0.1))
+inspect(rules)
